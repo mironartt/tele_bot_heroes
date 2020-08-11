@@ -1,0 +1,2 @@
+yandex-checkout==1.6.3
+pyTelegramBotAPI==3.7.2
