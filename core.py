@@ -282,7 +282,7 @@ Username: {3}
 Фамилия: {2}
 Дата: {4}
 Состав: {6}
-'''.format(self.user_id or '-', self.user_first_name or '-', self.user_last_name or '-', self.username or '-', str(datetime.now()), self.order_id, self.cart.get_list_items(safe=True), self.cart.booking_date, self.get_cost())
+'''.format(self.user_id or '-', self.user_first_name or '-', self.user_last_name or '-', self.username or '-', str(datetime.now()), self.order_id, self.cart.get_list_items(safe=True), self.cart.booking_date, self.cart.get_cost)
         msg = '\n'.join([i.strip() for i in msg.split('\n')])
         return msg[:128] if not full else msg
 
@@ -313,7 +313,7 @@ Username: {3}
             self.bot.send_message(settings.ADMIN_USER_ID, 'Произошла ошибка при работе с ботом у пользователя: {0}'.format(self.check_user_data(message)), reply_markup=None)
 
     def save_order_log(self):
-        path = base_dir + '/tele_bot_heroes/order_log/'
+        path = base_dir + '/tele_bot_heroes/logs/orders/'
         file_name = '{0}.txt'.format(self.order_id)
         file = path + file_name
         if not os.path.exists(path):

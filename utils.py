@@ -15,11 +15,12 @@ Configuration.secret_key = settings.YANDEX_SECRET_KEY
 def save_payment(p_data, is_list=False):
     try:
         if not is_list:
+            p_data_dict = json.loads(p_data)
             with open(settings.PAYMENT_LOG_FILE, 'a') as f:
-                f.write(str(json.loads(p_data)) + '\n')
-            order_id = p_data.get('metadata', {}).get('order_id')
+                f.write(str(p_data_dict) + '\n')
+            order_id = p_data_dict.get('metadata', {}).get('order_id')
             if order_id is not None:
-                with open(settings.base_dir + '/tele_bot_heroes/logs/mails/' + '%s.txt' % str(order_id), 'w') as f:
+                with open(settings.base_dir + '/tele_bot_heroes/logs/payments/' + '%s.txt' % str(order_id), 'w') as f:
                     f.write(str(json.loads(p_data)))
         else:
             with open(settings.PAYMENT_LOG_FILE, 'w') as f:
@@ -101,7 +102,7 @@ def send_mail(mail_to, message):
         s.starttls()
         s.login(login, password)
         s.sendmail(msg['From'], recipients_emails, msg.as_string())
-        save_mail_log({'mail_to': recipients_emails, 'message': message, 'subject': subject})
+        save_mail_log({'mail_to': recipients_emails, 'message': message, 'subject': subject, 'data': str(datetime.now())})
         print('-- NICE SEND')
     finally:
         print(msg)

@@ -43,31 +43,31 @@ def is_callback(query):
 
 @bot.message_handler(content_types=["text"])
 def url(message):
-    try:
-        if message.text == 'Бронирование времени':
-            bot_body.get_serivices(message)
-        elif message.text == 'Просмотреть выбранные услуги':
-            bot_body.get_serivices_choosen(message)
-        elif message.text == 'Очистить':
-            bot_body.clear_cart(message)
-        elif message.text == 'Оплатить':
-            bot_body.go_to_pay(message)
-        elif message.text == 'Забронировать Online':
-            bot_body.get_services_after_click(message)
-        elif message.text == '↩️ Назад':
-            bot_body.back_to_menu(message)
-        elif message.text == 'Прайс':
-            bot_body.get_price_list(message)
-        elif message.text == 'Акции':
-            bot_body.get_promo_link(message)
-        elif message.text == 'Железо':
-            bot_body.get_hardware_list(message)
-        elif message.text == 'Девайсы':
-            bot_body.get_devices_list(message)
-        elif message.text == 'Где мы находимся?':
-            bot_body.get_location(message)
-    except:
-        bot_body.send_error(message)
+    # try:
+    if message.text == 'Бронирование времени':
+        bot_body.get_serivices(message)
+    elif message.text == 'Просмотреть выбранные услуги':
+        bot_body.get_serivices_choosen(message)
+    elif message.text == 'Очистить':
+        bot_body.clear_cart(message)
+    elif message.text == 'Оплатить':
+        bot_body.go_to_pay(message)
+    elif message.text == 'Забронировать Online':
+        bot_body.get_services_after_click(message)
+    elif message.text == '↩️ Назад':
+        bot_body.back_to_menu(message)
+    elif message.text == 'Прайс':
+        bot_body.get_price_list(message)
+    elif message.text == 'Акции':
+        bot_body.get_promo_link(message)
+    elif message.text == 'Железо':
+        bot_body.get_hardware_list(message)
+    elif message.text == 'Девайсы':
+        bot_body.get_devices_list(message)
+    elif message.text == 'Где мы находимся?':
+        bot_body.get_location(message)
+    # except:
+    #     bot_body.send_error(message)
 
 
 def start_bot():
